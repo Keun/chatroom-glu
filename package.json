@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js --exec ./node_modules/.bin/babel-node -e js",
+    "start": "nodemon ./index.js --exec",
+    "start-dev": "nodemon ./index.js --exec babel-node -e js",
     "test": "DEBUG=* nodemon ./index.js --exec ./node_modules/.bin/babel-node -e js"
   },
   "author": "Koen Borghols",
