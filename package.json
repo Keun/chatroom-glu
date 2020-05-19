@@ -6,11 +6,12 @@
   "scripts": {
     "start": "nodemon ./index.js --exec",
     "start-dev": "nodemon ./index.js --exec babel-node -e js",
-    "test": "DEBUG=* nodemon ./index.js --exec ./node_modules/.bin/babel-node -e js"
+    "test": "DEBUG=* nodemon ./index.js --exec babel-node -e js"
   },
   "author": "Koen Borghols",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "expres": "0.0.5",
     "express": "^4.17.1",
     "nodemon": "^2.0.3",
