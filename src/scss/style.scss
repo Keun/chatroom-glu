@@ -1,0 +1,11 @@
+$test: #123456;
+
+body{
+    background-color:$test;
+}
+
+.test {
+    padding:0;
+    margin:0;
+    color:$test;
+}
