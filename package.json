@@ -11,6 +11,8 @@
   "author": "Koen Borghols",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.5.0",
+    "bootstrap-sass": "^3.4.1",
     "dotenv": "^8.2.0",
     "expres": "0.0.5",
     "express": "^4.17.1",
