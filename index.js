@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html'); 
 });
 
+app.get('/rooms', (req, res) => {
+    res.sendFile(__dirname + '/public/rooms.html'); 
+});
+
+
 app.get('/chillout-place', (req, res) => {
     res.sendFile(__dirname + '/public/chatroom.html');
 });
@@ -37,30 +42,31 @@ const tech = io.of('/tech');
 tech.on('connection', (socket) => {
     socket.on('join', (data) => {
         socket.join(data.room);
+        
+        db.getChats(data.room).then( val => {
+            // console.log(val);
+            tech.to(socket.id).emit('historyChats',val);
 
-        db.getChats.then( val => {
-            //console.log(val);
+            tech.in(data.room).emit('singleMessage', `${data.user} joined ${data.room} room!`);
         });
 
-        tech.in(data.room).emit('message', `New user joined ${data.room} room!`);
+       
     });
 
     socket.on('message', (data) => {
         console.log(`message ${data.msg}`);
 
         var message = {
-            name: "User",
+            user: data.user,
             room: data.room,
-            text: data.msg
+            msg: data.msg
         };
 
         let insert = db.insertChats(message);
-        tech.in(data.room).emit('message', data.msg);
+        tech.in(data.room).emit('message', message);
     });
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
-
-        tech.emit('message', 'user disconnected');
+        tech.emit('singleMessage', 'user disconnected');
     })
 });
