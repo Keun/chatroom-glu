@@ -1,13 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
 	watch: true,
 	entry: { 
 		main: './src/main.js',
-		style: './src/style.js',
 	},
 	output: {
 		path: path.join(__dirname, 'public/assets'),
@@ -24,7 +24,7 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							url: false,
-							sourceMap: true
+							sourceMap: true,
 						}
 					}, 
 					{
@@ -44,6 +44,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.WatchIgnorePlugin([path.join(__dirname, 'node_modules')]),
-		new ExtractTextPlugin('/css/[name].css')
+		new ExtractTextPlugin('/css/[name].css'),
+		new OptimizeCssAssetsPlugin()
 	],
 };

@@ -15,17 +15,20 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html'); 
 });
 
-
-app.get('/javascript', (req, res) => {
-    res.sendFile(__dirname + '/public/javascript.html');
+app.get('/chillout-place', (req, res) => {
+    res.sendFile(__dirname + '/public/chatroom.html');
 });
 
-app.get('/swift', (req, res) => {
-    res.sendFile(__dirname + '/public/swift.html');
+app.get('/nightlife', (req, res) => {
+    res.sendFile(__dirname + '/public/chatroom.html');
 });
 
-app.get('/css', (req, res) => {
-    res.sendFile(__dirname + '/public/css.html');
+app.get('/series-movies', (req, res) => {
+    res.sendFile(__dirname + '/public/chatroom.html');
+});
+
+app.get('/sports', (req, res) => {
+    res.sendFile(__dirname + '/public/chatroom.html');
 });
 
 // tech namespace
@@ -36,7 +39,7 @@ tech.on('connection', (socket) => {
         socket.join(data.room);
 
         db.getChats.then( val => {
-            console.log(val);
+            //console.log(val);
         });
 
         tech.in(data.room).emit('message', `New user joined ${data.room} room!`);

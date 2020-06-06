@@ -1,0 +1,24 @@
+@mixin sm {
+	@media #{$small-devices}  {
+		@content;
+	}
+}
+
+@mixin md{
+	@media #{$medium-devices}  {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media #{$large-devices}  {
+		@content;
+	}
+}
+
+
+@mixin xl {
+	@media #{$extra-large-devices}  {
+		@content;
+	}
+}

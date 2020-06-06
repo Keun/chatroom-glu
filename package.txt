@@ -1,0 +1,8 @@
+
+"scripts": {
+   "start": "nodemon ./index.js --exec",
+   "start-dev": "nodemon ./index.js --exec babel-node -e js",
+   "test": "set DEBUG=* & nodemon ./index.js --exec babel-node -e js",
+   "dev": "npm run start-dev && npm run build",
+   "build": "webpack --mode production"
+},
