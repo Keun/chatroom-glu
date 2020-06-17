@@ -56,15 +56,15 @@ a.list-group-item{
     }
 }
 
-// .test {
-//     padding:0;
-//     margin:0;
-//     color:$background;
+.test {
+    padding:0;
+    margin:0;
+    color:$background;
     
-//     @include sm{
-// 		&:after {
-// 			content: "";
-// 			display: none;
-// 		}
-// 	}
-// }
+    @include sm{
+		&:after {
+			content: "";
+			display: none;
+		}
+	}
+}

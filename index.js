@@ -42,12 +42,18 @@ const tech = io.of('/tech');
 tech.on('connection', (socket) => {
     socket.on('join', (data) => {
         socket.join(data.room);
-        
+
         db.getChats(data.room).then( val => {
             // console.log(val);
             tech.to(socket.id).emit('historyChats',val);
 
             tech.in(data.room).emit('singleMessage', `${data.user} joined ${data.room} room!`);
+        });
+
+        db.checkUser(data.user).then(value => {
+            if(value == true){
+                db.insertUser();
+            }
         });
 
        

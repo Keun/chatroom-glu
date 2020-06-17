@@ -16,6 +16,21 @@ const client = new pg.Client({
 });
 client.connect();
 
+const checkUser =   (user) => {
+    return new Promise((resolve, reject) => {
+        client.query("SELECT * FROM users WHERE user = '"+user+"';")
+        .then(result => {
+            if(result.rows.lenght > 0){
+                returnValue = false;
+            }else{
+                returnValue = true;
+            }
+            resolve(returnValue);
+        })
+        .catch(e => console.error(e.stack))
+    });
+}
+
     
 const getChats = (roomName) => {
     
