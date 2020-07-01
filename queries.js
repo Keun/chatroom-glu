@@ -54,7 +54,35 @@ const insertChats = (request) => {
     })
 }
 
+
+// const checkUser =  (user) => {
+//     return new Promise((resolve, reject) => {
+//         client.query("SELECT * FROM users WHERE user_name = '"+user+"' AND TIME_DIFF(begindatum,einddatum) < 3600;")
+//         .then(result => {
+//             if(result.rows.lenght > 0){
+//                 returnValue = false;
+//             }else{
+//                 returnValue = true;
+//             }
+//             resolve(returnValue);
+//         })
+//         .catch(e => console.error(e.stack))
+//     });
+// }
+
+// const insertUser = (request) => {
+//     const data = request;
+
+//     client.query('INSERT INTO users (user_name, create_date_time) VALUES ($1, NOW())', [data.user], (error, results) => {
+//       if (error) {
+//         throw error
+//       }
+//     })
+// }
+
 module.exports = {
     getChats,
-    insertChats
+    insertChats,
+    // checkUser,
+    // insertUser
 }

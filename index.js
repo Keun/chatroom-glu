@@ -49,14 +49,12 @@ tech.on('connection', (socket) => {
 
             tech.in(data.room).emit('singleMessage', `${data.user} joined ${data.room} room!`);
         });
-
-        db.checkUser(data.user).then(value => {
-            if(value == true){
-                db.insertUser();
-            }
-        });
-
        
+    });
+
+    socket.on('registerUser', (data) => {
+        console.log(data);
+        tech.to(socket.id).emit('validUser',{valid:true});
     });
 
     socket.on('message', (data) => {

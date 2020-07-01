@@ -1,6 +1,7 @@
 import 'bootstrap-sass';
 import './scss/style.scss';
 
+const socket = io('/tech');
 var url = window.location.href;
 var roomArr = url.split('/');
 var roomName = roomArr[roomArr.length-1];
@@ -9,7 +10,6 @@ var isCurrentRoom = validRooms.includes(roomName);
 
 if (isCurrentRoom) {
     const room = roomName;
-    const socket = io('/tech');
     $('form').submit(() => {
         let msg = $('#m').val();
         let user = localStorage.getItem('userName');
@@ -38,6 +38,8 @@ if (isCurrentRoom) {
 
     });
 
+  
+
     socket.on('singleMessage', (msg) => {
         $('#messages').append($('<li class="other">').text(msg));
     });
@@ -65,8 +67,21 @@ $( document ).ready(function() {
         event.preventDefault();
         var userName = $('._userName').val();
 
+        socket.emit('registerUser', { user:userName });
+
+
         localStorage.setItem('userName',userName);
 
-        window.location.href = '/rooms';
+        //window.location.href = '/rooms'; 
+    });
+
+    socket.on('validUser', (value) => {
+        console.log(value);
+        if(value.valid === true){
+            window.location.href = '/rooms'; 
+        }else{
+            //foutieve username
+            //error tonen op het scherm
+        }
     });
 });
