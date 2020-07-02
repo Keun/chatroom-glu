@@ -6,10 +6,14 @@ const port = process.env.PORT || 3000;
 const db = require('./queries');
 
 server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port local ${port}`);
 });
 
 app.use(express.static('public'));
+
+
+//hallo allemaal
+//kunnen jullie dit lezen?
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html'); 
